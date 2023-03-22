@@ -2,6 +2,7 @@ import Koa from 'koa'
 import * as http from 'http'
 import initCore from './utils/init'
 import logger from './middleware/logger'
+import Config from './config/Config'
 
 // 创建 koa 实例
 const app = new Koa()
@@ -20,6 +21,6 @@ app.use(async (ctx) => {
 })
 
 // 启动服务
-app.listen(3000, () => {
-  console.log('server is running at http://localhost:3000')
+app.listen(Config.PORT, () => {
+  console.log(`server is running at http://localhost:${Config.PORT}`)
 })
