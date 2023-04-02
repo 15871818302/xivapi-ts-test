@@ -6,10 +6,6 @@ import Koa from 'koa'
 import * as http from 'http'
 import KoaBodyParser from 'koa-bodyparser'
 import router from '../router'
-import { getAllFileExport } from './fileExport'
-import * as path from 'path'
-import Router from 'koa-router'
-import Config from '../config/Config'
 
 // 初始化中间件类
 class init {
@@ -23,16 +19,15 @@ class init {
     init.app = app
     init.server = server
     init.loadBodyParser()
-    console.log(`${process.cwd()}/${Config.BASE}/router`)
-    // init.initLoadRoutes()
+    init.initLoadRoutes()
   }
 
   // 挂载路由实例
   static async initLoadRoutes () {
-    const dirPath = path.join(`${process.cwd()}/${Config.BASE}/router`)
-    await getAllFileExport(dirPath, (file: Router) => {
-      init.app.use(router.routes)
-    })
+    // const dirPath = path.join(`${process.cwd()}\\${Config.BASE}\\router\\`)
+    // await getAllFileExport(dirPath, (file: Router) => {
+      init.app.use(router.routes())
+    // })
   }
 }
 
